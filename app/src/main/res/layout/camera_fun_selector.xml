@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="showFunSelector"
+            type="Boolean" />
+
+        <variable
+            name="showClean"
+            type="Boolean" />
+
+        <variable
+            name="onClickListener"
+            type="OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/camera_fun_selector"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="@{showFunSelector ? View.VISIBLE:View.GONE}">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/clean"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickListener}"
+            android:padding="@dimen/spacing_small"
+            android:src="@drawable/ic_delete"
+            android:text="清除"
+            app:icon="@drawable/ic_delete"
+            app:iconTint="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/openTrinketSelector"
+            app:layout_constraintEnd_toStartOf="@+id/mix"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mix"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickListener}"
+            android:text="輸出"
+            app:icon="@drawable/ic_share"
+            app:iconTint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/clean"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/clean"
+            app:layout_constraintTop_toTopOf="@+id/clean" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/openFrameSelector"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickListener}"
+            android:text="更改外框"
+            app:layout_constraintEnd_toStartOf="@+id/openTrinketSelector"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/openTrinketSelector" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/openTrinketSelector"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickListener}"
+            android:text="加入裝飾品"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/openFingerDrawer"
+            app:layout_constraintStart_toEndOf="@+id/openFrameSelector"
+            app:layout_constraintTop_toBottomOf="@+id/clean" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/openFingerDrawer"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickListener}"
+            android:text="手寫描繪"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/openTrinketSelector"
+            app:layout_constraintTop_toTopOf="@+id/openTrinketSelector" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

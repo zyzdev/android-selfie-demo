@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NmnsSelfier</string>
+    <string name="string_delay_x_second">延遲%1$d秒</string>
+    <string name="string_width_x">寬度(%1$d)</string>
+</resources>

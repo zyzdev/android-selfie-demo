@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.omniguider.nmnsselfier.utils.ConstantUtil" />
+
+        <import type="android.graphics.Bitmap" />
+
+        <import type="android.view.View" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="base"
+            type="Bitmap" />
+
+        <variable
+            name="showFunSelector"
+            type="Boolean" />
+
+        <variable
+            name="showClean"
+            type="Boolean" />
+
+        <variable
+            name="showFrameSelector"
+            type="Boolean" />
+
+        <variable
+            name="showTrinketSelector"
+            type="Boolean" />
+
+        <variable
+            name="showFingerDrawer"
+            type="Boolean" />
+
+        <variable
+            name="onClickListener"
+            type="OnClickListener" />
+
+        <variable
+            name="frameDrawableRes"
+            type="Integer" />
+
+        <variable
+            name="trinketWasAdd"
+            type="Boolean" />
+
+        <variable
+            name="fingerCanvasWasDraw"
+            type="Boolean" />
+
+        <variable
+            name="widthInfo"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.photoedit.PhotoEditFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/baseLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/tmpPhoto"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/trinket_pool"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{showTrinketSelector || trinketWasAdd ? View.VISIBLE : View.GONE,default=gone}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/frame"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{frameDrawableRes != ConstantUtil.NONE_FRAME || showFrameSelector ? View.VISIBLE : View.GONE,default=gone}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.omniguider.nmnsselfier.fignerdrawer.FingerDrawer
+                android:id="@+id/finger_drawer"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{showFingerDrawer || fingerCanvasWasDraw? View.VISIBLE : View.GONE,default=gone}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/lastResultPhoto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintBottom_toBottomOf="@+id/baseLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/camera_fun_selector"
+            layout="@layout/camera_fun_selector"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/baseLayout"
+            bind:onClickListener="@{onClickListener}"
+            bind:showFunSelector="@{showFunSelector}" />
+
+        <include
+            android:id="@+id/camera_frame_selector"
+            layout="@layout/camera_frame_selector"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/baseLayout"
+            bind:frameDrawableRes="@{frameDrawableRes}"
+            bind:onClickListener="@{onClickListener}"
+            bind:showFrameSelector="@{showFrameSelector}" />
+
+        <include
+            android:id="@+id/camera_trinket_selector"
+            layout="@layout/camera_trinket_selector"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/baseLayout"
+            bind:onClickListener="@{onClickListener}"
+            bind:showTrinketSelector="@{showTrinketSelector}"
+            bind:trinketWasAdd="@{trinketWasAdd}" />
+
+        <include
+            android:id="@+id/camera_finger_drawer_controller"
+            layout="@layout/camera_finger_drawer_controller"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/baseLayout"
+            bind:onClickListener="@{onClickListener}"
+            bind:showFingerDrawer="@{showFingerDrawer}"
+            bind:widthInfo="@{widthInfo}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

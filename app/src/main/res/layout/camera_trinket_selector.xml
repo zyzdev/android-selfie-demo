@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="showTrinketSelector"
+            type="Boolean" />
+
+        <variable
+            name="trinketWasAdd"
+            type="Boolean" />
+
+        <variable
+            name="onClickListener"
+            type="OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="@{showTrinketSelector ? View.VISIBLE : View.GONE,default=gone}"
+        tools:visibility="visible">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_trinket_selector"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="@{onClickListener}"
+            android:text="返回"
+            app:icon="@drawable/ic_back"
+            app:iconTint="@color/colorAccent"
+            app:layout_constraintEnd_toStartOf="@+id/clear_trinket"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/clear_trinket"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="@{trinketWasAdd ? onClickListener : null}"
+            android:text="清除邊框"
+            android:visibility="@{trinketWasAdd ? View.VISIBLE : View.INVISIBLE}"
+            app:icon="@drawable/ic_delete"
+            app:iconTint="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back_trinket_selector"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/trinket1"
+            android:layout_width="128sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:adjustViewBounds="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:onClick="@{onClickListener}"
+            android:src="@drawable/crown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/trinket2"
+            app:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+        <ImageView
+            android:id="@+id/trinket2"
+            android:layout_width="128sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:adjustViewBounds="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:onClick="@{onClickListener}"
+            android:src="@drawable/money"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/trinket1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="clear_trinket,back_trinket_selector"
+            tools:layout_editor_absoluteY="565dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

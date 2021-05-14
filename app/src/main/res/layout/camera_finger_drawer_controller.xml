@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="showFingerDrawer"
+            type="Boolean" />
+
+        <variable
+            name="onClickListener"
+            type="OnClickListener" />
+
+        <variable
+            name="widthInfo"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="@{showFingerDrawer ? View.VISIBLE : View.GONE,default=gone}"
+        tools:visibility="visible">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_finger_drawer"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickListener}"
+            android:text="返回"
+            app:icon="@drawable/ic_back"
+            app:iconTint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/erase_finger_drawer"
+            app:layout_constraintEnd_toStartOf="@+id/erase_finger_drawer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/erase_finger_drawer" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/erase_finger_drawer"
+            style="@style/Widget.App.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickListener}"
+            android:text="清空"
+            app:icon="@drawable/ic_delete"
+            app:iconTint="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/colorList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back_finger_drawer"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/colorList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:alignContent="center"
+            app:alignItems="flex_start"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="center"
+            app:layout_constraintBottom_toTopOf="@+id/widthSelector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/erase_finger_drawer"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <!--<androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/colorList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:overScrollMode="ifContentScrolls"
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/widthSelector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/erase_finger_drawer"
+            app:layout_constraintWidth_percent="0.8"
+            tools:itemCount="3"
+            tools:listitem="@layout/color_item" />
+-->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{widthInfo}"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/widthSelector"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/widthSelector"
+            tools:text="寬度(5)" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/widthSelector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:stepSize="1"
+            android:value="1"
+            android:valueFrom="1"
+            android:valueTo="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/colorList"
+            app:layout_constraintWidth_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
